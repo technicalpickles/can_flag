@@ -26,7 +26,7 @@ class Flag < ActiveRecord::Base
   after_create :callback_flaggable
   # Pings the 'after_flagged' callback in the content model, if it exists.
   def callback_flaggable
-    flaggable.callback :after_flagged
+    flaggable.run_callbacks :after_flagged
   end
   
   before_validation_on_create :set_owner_id
